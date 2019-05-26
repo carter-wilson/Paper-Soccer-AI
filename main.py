@@ -4,7 +4,7 @@ N = 4
 M = 5
 G = 1
 
-NHP = 0
+NHP = 1
 
 
 def main():

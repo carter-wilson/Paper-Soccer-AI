@@ -1,21 +1,23 @@
 from threading import Thread
 
+from evaluation import heuristic
+
 import pygame
 
 BACKGROUND = (20, 20, 20)
 GRID = (70, 70, 70)
-P1PATH = (180, 20, 200)
-P1GOAL = (80, 5, 90)
-P2PATH = (60, 200, 60)
-P2GOAL = (20, 90, 20)
+TOPPATH = (180, 20, 200)
+BOTTOMGOAL = (80, 5, 90)
+BOTTOMPATH = (60, 200, 60)
+TOPGOAL = (20, 90, 20)
 
 
 class Display:
     SIZE = 60
-    LINE_WIDTH = 3
-    FPS = 2
+    LINE_WIDTH = 4
+    FPS = 10
     bgSurface = None
-    player = P1PATH
+    player = TOPPATH
     _quit = False
 
     def __init__(self, n, m, g):
@@ -35,9 +37,9 @@ class Display:
         for x in range(n * 2):
             for y in range(m * 2 + 2):
                 if y == 0:
-                    color = P1GOAL
+                    color = TOPGOAL
                 elif y == m * 2 + 1:
-                    color = P2GOAL
+                    color = BOTTOMGOAL
                 else:
                     color = GRID
                 if 0 < y < m * 2 + 1 or n - g <= x < n + g:
@@ -50,7 +52,7 @@ class Display:
             nloc = (self.loc[0] + ((0 < d < 4) - (4 < d < 8)) * self.SIZE, self.loc[1] + ((2 < d < 6) - (d < 2 or d > 6)) * self.SIZE)
             pygame.draw.line(self.fgSurface, self.player, self.loc, nloc, self.LINE_WIDTH)
             self.loc = nloc
-        self.player = P1PATH if self.player == P2PATH else P2PATH
+        self.player = TOPPATH if self.player == BOTTOMPATH else BOTTOMPATH
 
     def startupdateloop(self):
         Thread(target=self._updateloop).start()
@@ -64,6 +66,7 @@ class Display:
             self.screen.blit(self.fgSurface, (0, 0))
             pygame.display.update()
             self.clock.tick(self.FPS)
+        pygame.display.quit()
 
     def close(self):
         self._quit = True
