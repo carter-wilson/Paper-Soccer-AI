@@ -8,9 +8,7 @@ class Game:
     display = None
 
     def __init__(self, n, m, g, nhp, display=True):
-        self.n = n
-        self.m = m
-        self.g = g
+        self.n, self.m, self.g = n, m, g
         self.agents = [HumanAgent() if 2 - nhp - i > 0 else ArtificialAgent() for i in range(2)]
         if display:
             self.display = Display(n, m, g)
