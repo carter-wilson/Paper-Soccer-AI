@@ -9,7 +9,7 @@ class Game:
 
     def __init__(self, n, m, g, nhp, display=True):
         self.n, self.m, self.g = n, m, g
-        self.agents = [HumanAgent(not i) if 2 - nhp - i > 0 else ArtificialAgent(not i) for i in range(2)]
+        self.agents = [ArtificialAgent(i) if nhp > i else HumanAgent(i) for i in range(1, -1, -1)]
         if display:
             self.display = Display(n, m, g)
             self.display.startupdateloop()
