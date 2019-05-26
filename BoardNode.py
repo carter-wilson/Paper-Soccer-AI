@@ -1,7 +1,9 @@
 class BoardNode:
-    links = set()
+    neighbors = dict()
+    links = dict()
 
-    def __init__(self, neighbors):
-        self.neighbors = neighbors
+    def __init__(self, ):
+        ...
 
     def addlink(self, ):
+        ...
