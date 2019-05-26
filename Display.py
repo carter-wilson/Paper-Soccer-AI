@@ -1,7 +1,5 @@
 from threading import Thread
 
-from evaluation import heuristic
-
 import pygame
 
 BACKGROUND = (20, 20, 20)

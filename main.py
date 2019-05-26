@@ -6,9 +6,11 @@ G = 1
 
 NHP = 2
 
+ABDEPTH = 2
+
 
 def main():
-    game = Game(N, M, G, NHP)
+    game = Game(N, M, G, NHP, ABDEPTH)
     game.play()
 
 
