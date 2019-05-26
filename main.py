@@ -1,16 +1,16 @@
-from Display import Display
 from Game import Game
 
-N = 5
-M = 4
-G = 2
+N = 4
+M = 5
+G = 1
 
-NHP = 1
+NHP = 0
 
 
 def main():
     game = Game(N, M, G, NHP)
     game.play()
+
 
 if __name__ == '__main__':
     main()

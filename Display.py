@@ -20,8 +20,8 @@ class Display:
 
     def __init__(self, n, m, g):
         pygame.init()
-        self.WIDTH = self.SIZE * m * 2
-        self.HEIGHT = self.SIZE * (n * 2 + 2)
+        self.WIDTH = self.SIZE * n * 2
+        self.HEIGHT = self.SIZE * (m * 2 + 2)
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.loc = (self.WIDTH / 2, self.HEIGHT / 2)
         self.fgSurface = pygame.Surface((self.WIDTH, self.HEIGHT),pygame.SRCALPHA)
@@ -32,15 +32,15 @@ class Display:
     def drawgrid(self, n, m, g):
         self.bgSurface = pygame.Surface((self.WIDTH, self.HEIGHT))
         self.bgSurface.fill((20, 20, 20))
-        for y in range(n * 2 + 2):
-            for x in range(m * 2):
+        for x in range(n * 2):
+            for y in range(m * 2 + 2):
                 if y == 0:
                     color = P1GOAL
-                elif y == n * 2 + 1:
+                elif y == m * 2 + 1:
                     color = P2GOAL
                 else:
                     color = GRID
-                if 0 < y < n * 2 + 1 or m - g / 2 <= x < m + g / 2:
+                if 0 < y < m * 2 + 1 or n - g <= x < n + g:
                     rect = pygame.Rect(x * self.SIZE, y * self.SIZE, self.SIZE - 1, self.SIZE - 1)
                     pygame.draw.rect(self.bgSurface, color, rect)
 

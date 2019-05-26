@@ -1,6 +1,12 @@
 class Evaluation:
     ...
 
+
+def heuristic(pos, n):
+    xx = pos[0] ** 2
+    y = pos[1]
+    return (xx + (n - y) ** 2) ** .5 - (xx + (y + n) ** 2) ** .5
+
 # minimax renamed as top-bottom
 # eval_top(state) := min([eval_bottom(state+i) for i in legal_move]) + 1
 # eval_x(winning state) := 0
